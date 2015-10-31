@@ -1,0 +1,222 @@
+Button equalsButton;
+Button plusButton;
+Button minusButton;
+Button multiButton;
+Button divideButton;
+Button zeroButton;
+Button oneButton;
+Button twoButton;
+Button threeButton;
+Button fourButton;
+Button fiveButton;
+Button sixButton;
+Button sevenButton;
+Button eightButton;
+Button nineButton;
+Button pointButton;
+Button cancelButton;
+
+String calculatorDisplay = "";
+
+int valueMemory;
+
+void setup() {
+
+  size(500, 700);
+
+//Button(int initialXPosition, int initialYPosition, int initialWidth, int initialHeight, color initialHighlightColor, color initialNormalColor, String initialLabel)
+
+  equalsButton = new Button(400, 550, 50, 50, color(230), color(255), "=");
+  plusButton = new Button(400,475,50,50, color(230), color (255), "+");
+  minusButton = new Button(400,400,50,50, color(230), color (255), "-");
+  multiButton = new Button(400,325,50,50, color(230), color (255), "*");
+  divideButton = new Button(400,250,50,50, color(230), color (255), "/");
+  oneButton = new Button(100,400,50,50, color (230), color (255), "1");
+  twoButton = new Button(200,400,50,50, color (230), color (255), "2");
+  threeButton = new Button(300,400,50,50, color (230), color (255), "3");
+  fourButton = new Button(100,325,50,50, color (230),color (255), "4");
+  fiveButton = new Button(200,325,50,50, color (230), color (255), "5");
+  sixButton = new Button(300,325,50,50, color (230), color (255), "6");
+  sevenButton = new Button(100,250,50,50, color (230),color (255), "7");
+  eightButton = new Button(200,250,50,50, color (230), color (255), "8");
+  nineButton = new Button(300,250,50,50, color(230), color (255), "9");
+  zeroButton = new Button(100,475,50,50, color (230), color (255), "0");
+  pointButton = new Button(200,475,50,50, color (230), color (255), ".");
+  cancelButton = new Button(300,475,50,50, color (230), color (255), "C");
+
+}
+
+
+
+
+
+void draw() {
+
+  background(255);
+
+  rect (50,50,100,100);
+  fill (0);
+  text (calculatorDisplay,200,200);
+  
+  equalsButton.changeColourOnMouseHover(mouseX, mouseY);  
+  equalsButton.drawButton();
+  
+  plusButton.changeColourOnMouseHover(mouseX, mouseY);
+  plusButton.drawButton();
+  
+  minusButton.changeColourOnMouseHover(mouseX, mouseY);
+  minusButton.drawButton();
+
+  multiButton.changeColourOnMouseHover(mouseX, mouseY);
+  multiButton.drawButton();
+  
+  divideButton.changeColourOnMouseHover(mouseX, mouseY);
+  divideButton.drawButton();
+  
+  zeroButton.changeColourOnMouseHover(mouseX, mouseY);
+  zeroButton.drawButton();
+  
+  oneButton.changeColourOnMouseHover(mouseX, mouseY);
+  oneButton.drawButton();
+  
+  twoButton.changeColourOnMouseHover(mouseX, mouseY);
+  twoButton.drawButton();
+  
+  threeButton.changeColourOnMouseHover(mouseX, mouseY);
+  threeButton.drawButton();
+  
+  fourButton.changeColourOnMouseHover(mouseX, mouseY);
+  fourButton.drawButton();
+  
+  fiveButton.changeColourOnMouseHover(mouseX, mouseY);
+  fiveButton.drawButton();
+  
+  sixButton.changeColourOnMouseHover(mouseX, mouseY);
+  sixButton.drawButton();
+  
+  sevenButton.changeColourOnMouseHover(mouseX, mouseY);
+  sevenButton.drawButton();
+  
+  eightButton.changeColourOnMouseHover(mouseX, mouseY);
+  eightButton.drawButton();
+  
+  nineButton.changeColourOnMouseHover (mouseX, mouseY);
+  nineButton.drawButton();
+  
+  pointButton.changeColourOnMouseHover (mouseX, mouseY);
+  pointButton.drawButton();
+  
+  cancelButton.changeColourOnMouseHover (mouseX, mouseY);
+  cancelButton.drawButton();
+}
+
+void mouseClicked(){
+ oneButton.onClick (mouseX, mouseY);
+ twoButton.onClick (mouseX, mouseY);
+ threeButton.onClick (mouseX, mouseY);
+ fourButton.onClick (mouseX, mouseY);
+ fiveButton.onClick (mouseX, mouseY);
+ sixButton.onClick (mouseX, mouseY);
+ sevenButton.onClick (mouseX, mouseY);
+ eightButton.onClick (mouseX, mouseY);
+ nineButton.onClick (mouseX, mouseY);
+ zeroButton.onClick (mouseX, mouseY);
+ equalsButton.onClick (mouseX, mouseY);
+ plusButton.onClick (mouseX, mouseY);
+ minusButton.onClick (mouseX, mouseY);
+ multiButton.onClick (mouseX, mouseY);
+ divideButton.onClick (mouseX, mouseY);
+ pointButton.onClick (mouseX, mouseY);
+ cancelButton.onClick (mouseX, mouseY);
+ 
+ 
+  
+}
+
+class Button {
+
+
+  int xPosition;
+  int yPosition;
+  int buttonWidth;
+  int buttonHeight;
+
+  int centerX;
+  int centerY;
+
+  color currentButtonFill;
+
+  color highlightColor;
+  color normalColor;
+
+  String label;
+
+
+  //--------------------------------
+
+
+  Button(int initialXPosition, int initialYPosition, int initialWidth, int initialHeight, 
+        color initialHighlightColor, color initialNormalColor, String initialLabel) {
+
+    xPosition = initialXPosition;
+    yPosition = initialYPosition;
+    buttonWidth = initialWidth;
+    buttonHeight = initialHeight;
+
+    centerX = xPosition + (buttonWidth / 2);
+    centerY = yPosition + (buttonHeight / 2);
+
+    highlightColor = initialHighlightColor;
+    normalColor = initialNormalColor;
+
+    currentButtonFill = normalColor;
+
+    label = initialLabel;
+  }
+
+  //--------------------------------
+
+
+  void drawButton() {
+
+    stroke(0);
+   strokeWeight(2);
+
+    fill(currentButtonFill);
+
+    rect(xPosition, yPosition, buttonWidth, buttonHeight);
+
+    fill(0);
+
+    textAlign(CENTER, CENTER);
+    textSize(22);
+
+    text(label, centerX, centerY);
+  }
+
+
+  void changeColourOnMouseHover(int mouseXPosition, int mouseYPosition) {
+
+    if ((mouseXPosition > xPosition) && (mouseXPosition < (xPosition + buttonWidth)) 
+      && (mouseYPosition > yPosition) && (mouseYPosition < (yPosition + buttonHeight))) {
+
+      currentButtonFill = color(210);
+    }
+    else {
+
+      currentButtonFill = color(255);
+    }
+  }
+  
+  void onClick(int mouseXPosition, int mouseYPosition){
+    
+    if ((mouseXPosition > xPosition) && (mouseXPosition < (xPosition + buttonWidth)) 
+      && (mouseYPosition > yPosition) && (mouseYPosition < (yPosition + buttonHeight))) {
+
+         calculatorDisplay = label;
+    
+    
+    
+  }
+}
+}
